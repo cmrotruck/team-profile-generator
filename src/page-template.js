@@ -11,7 +11,7 @@ const generateBanner = () => {
 }
 
 const generateManager = manager => {
-
+    //console.log(manager);
     return `
         <section class="card text-white col-4" style="max-width: 18rem;">
             <div class="card-header bg-primary">
@@ -20,9 +20,9 @@ const generateManager = manager => {
             </div>
             <div class="card-body bg-light align-items ">                
                 <ul class="list-group">
-                    <li class="list-group-item">${manager.Id}</li>
-                    <li class="list-group-item">${manager.email}</li>
-                    <li class="list-group-item">${manager.phone}</li>
+                    <li class="list-group-item">ID: ${manager.id}</li>
+                    <li class="list-group-item">Email: ${manager.email}</li>
+                    <li class="list-group-item">Phone: ${manager.phone}</li>
                 </ul>
             </div>
         </section>
@@ -34,14 +34,14 @@ const generateEngineer = engineer => {
     return `
         <section class="card text-white col-4" style="max-width: 18rem;">
             <div class="card-header bg-primary">
-                ---engineer first name---
-                <h5 class="card-title">Manager</h5>
+                ${engineer.firstName}
+                <h5 class="card-title">Engineer</h5>
             </div>
             <div class="card-body bg-light align-items ">                
                 <ul class="list-group">
-                    <li class="list-group-item">---id---</li>
-                    <li class="list-group-item">---email---</li>
-                    <li class="list-group-item">---github---</li>
+                    <li class="list-group-item">Id: ${engineer.id}</li>
+                    <li class="list-group-item">Email: ${engineer.email}</li>
+                    <li class="list-group-item">Github: ${engineer.gitHub}</li>
                 </ul>
             </div>
         </section>
@@ -53,44 +53,50 @@ const generateIntern = intern => {
     return `
         <section class="card text-white col-4" style="max-width: 18rem;">
             <div class="card-header bg-primary">
-                ---intern name---
-                <h5 class="card-title">Manager</h5>
+                ${intern.firstName}
+                <h5 class="card-title">Intern</h5>
             </div>
             <div class="card-body bg-light align-items ">                
                 <ul class="list-group">
-                    <li class="list-group-item">---id---</li>
-                    <li class="list-group-item">---email---</li>
-                    <li class="list-group-item">---school---</li>
+                    <li class="list-group-item">Id: ${intern.id}</li>
+                    <li class="list-group-item">Email: ${intern.email}</li>
+                    <li class="list-group-item">School: ${intern.school}</li>
                 </ul>
             </div>
         </section>
     `;
 }
 
-const generateCards = employees => {
-    var html;
-    // console.log(employees);
+const generateCards = teamData => {
+        //destructure page data by section
+        //console.log(teamData);
+        const { employees, ...manager } = teamData;
+        const fullName = manager.firstName + " " + manager.lastName;
+
+
+    var html = generateManager(manager);
+    //console.log(employees);
     employees.forEach(employee => {
-        if (employee.type === "Engineer") {
-            //console.log('entered Engineer branch');
+        //console.log(employee)
+        if (employee.role === "Engineer") {
+            //console.log('entered Engineer branch : ');
+            //console.log(employee)
             html = html + generateEngineer(employee);
         }
-        if (employee.type === "Intern") {
-            //console.log('entered intern branch');
+        if (employee.role === "Intern") {
+            //console.log('entered intern branch: ');
+            //console.log(employee);
             html = html + generateIntern(employee);
         }
-        //console.log(html);
-        return html;
+        console.log(html);
     });
+    return html;
 }
 
 
 module.exports = templateData => {
-    //destructure page data by section
-    const { employees, ...manager } = templateData;
-    const fullName = manager.firstName + " " + manager.lastName;
 
-    return `
+    var html = `
     <!DOCTYPE html>
     <html lang="eng">
 
@@ -115,8 +121,7 @@ module.exports = templateData => {
 
         <main class="container">
             <div class="row justify-content-center">
-                ${generateManager(manager)}
-                ${generateCards(employees)}
+                ${generateCards(templateData)}
             </div>
         </main>
 
@@ -126,5 +131,6 @@ module.exports = templateData => {
     </body>
     </html>
     `;
+    return html;
 };
 //generate team section

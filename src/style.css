@@ -1,0 +1,16 @@
+#banner {
+    background-color: red;
+    color: white;
+    font-size: 36px;
+    margin: 20px;
+    width: auto;
+    font-weight: bold;
+}
+
+.card {
+    margin: 30px;
+}
+
+.list-group-item {
+    color: black;
+}

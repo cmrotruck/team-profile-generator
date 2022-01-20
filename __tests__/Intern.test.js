@@ -9,13 +9,13 @@ test('create an intern object', () => {
 });
 
 test('gets intern school', () => {
-    const intern = new Intern('Chad', 'Rotruck', '456782', 'crotruck@gmail.com', '4564584', "Ohio State University");
+    const intern = new Intern('Chad', 'Rotruck', '456782', 'crotruck@gmail.com', "Ohio State University");
 
     expect(intern.getSchool()).toEqual(expect.any(String));
 });
 
 test('gets employee role', () => {
-    const intern = new Intern('Chad', 'Rotruck', '456782', 'crotruck@gmail.com', '4564584', "Ohio State University");
+    const intern = new Intern('Chad', 'Rotruck', '456782', 'crotruck@gmail.com', "Ohio State University");
 
     expect(intern.getRole()).toBe('Intern');
 });

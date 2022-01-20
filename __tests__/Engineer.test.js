@@ -11,19 +11,19 @@ test('creates an engineer object', () => {
 });
 
 test('gets employees name', () => {
-    const engineer = new Engineer('Chad', 'Rotruck', '456782', 'crotruck@gmail.com', '4564584', 'cmrotruck');
+    const engineer = new Engineer('Chad', 'Rotruck', '456782', 'crotruck@gmail.com', 'cmrotruck');
 
-    expect(engineer.getName()).toBe('Chad Rotruck');
+    expect(engineer.firstName).toBe('Chad');
 });
 
 test('gets employees github', () => {
-    const engineer = new Engineer('Chad', 'Rotruck', '456782', 'crotruck@gmail.com', '4564584', 'cmrotruck');
+    const engineer = new Engineer('Chad', 'Rotruck', '456782', 'crotruck@gmail.com', 'cmrotruck');
 
     expect(engineer.getGitHub()).toBe('https://github.com/cmrotruck');
 });
 
 test('gets employees role', () => {
-    const engineer = new Engineer('Chad', 'Rotruck', '456782', 'crotruck@gmail.com', '4564584', 'cmrotruck');
+    const engineer = new Engineer('Chad', 'Rotruck', '456782', 'crotruck@gmail.com', 'cmrotruck');
 
     expect(engineer.getRole()).toBe('Engineer');
 })
