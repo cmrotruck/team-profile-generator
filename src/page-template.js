@@ -1,18 +1,17 @@
 const Manager = require("../lib/Manager");
 
-
 //generate my team banner at top of the page
 const generateBanner = () => {
-    return `
+  return `
     <section class="col-12 text-center jumbotron" id="banner">
         My Team
     </section>
-    `
-}
+    `;
+};
 
-const generateManager = manager => {
-    //console.log(manager);
-    return `
+const generateManager = (manager) => {
+  //console.log(manager);
+  return `
         <section class="card text-white col-4" style="max-width: 18rem;">
             <div class="card-header bg-primary">
                 ${manager.firstName}
@@ -27,11 +26,11 @@ const generateManager = manager => {
             </div>
         </section>
     `;
-}
+};
 
-const generateEngineer = engineer => {
-    //console.log(engineer);
-    return `
+const generateEngineer = (engineer) => {
+  //console.log(engineer);
+  return `
         <section class="card text-white col-4" style="max-width: 18rem;">
             <div class="card-header bg-primary">
                 ${engineer.firstName}
@@ -46,11 +45,11 @@ const generateEngineer = engineer => {
             </div>
         </section>
     `;
-}
+};
 
-const generateIntern = intern => {
-    //console.log(intern);
-    return `
+const generateIntern = (intern) => {
+  //console.log(intern);
+  return `
         <section class="card text-white col-4" style="max-width: 18rem;">
             <div class="card-header bg-primary">
                 ${intern.firstName}
@@ -65,38 +64,35 @@ const generateIntern = intern => {
             </div>
         </section>
     `;
-}
+};
 
-const generateCards = teamData => {
-        //destructure page data by section
-        //console.log(teamData);
-        const { employees, ...manager } = teamData;
-        const fullName = manager.firstName + " " + manager.lastName;
+const generateCards = (teamData) => {
+  //destructure page data by section
+  //console.log(teamData);
+  const { employees, ...manager } = teamData;
+  const fullName = manager.firstName + " " + manager.lastName;
 
+  var html = generateManager(manager);
+  //console.log(employees);
+  employees.forEach((employee) => {
+    //console.log(employee)
+    if (employee.role === "Engineer") {
+      //console.log('entered Engineer branch : ');
+      //console.log(employee)
+      html = html + generateEngineer(employee);
+    }
+    if (employee.role === "Intern") {
+      //console.log('entered intern branch: ');
+      //console.log(employee);
+      html = html + generateIntern(employee);
+    }
+    // console.log(html);
+  });
+  return html;
+};
 
-    var html = generateManager(manager);
-    //console.log(employees);
-    employees.forEach(employee => {
-        //console.log(employee)
-        if (employee.role === "Engineer") {
-            //console.log('entered Engineer branch : ');
-            //console.log(employee)
-            html = html + generateEngineer(employee);
-        }
-        if (employee.role === "Intern") {
-            //console.log('entered intern branch: ');
-            //console.log(employee);
-            html = html + generateIntern(employee);
-        }
-        console.log(html);
-    });
-    return html;
-}
-
-
-module.exports = templateData => {
-
-    var html = `
+module.exports = (templateData) => {
+  var html = `
     <!DOCTYPE html>
     <html lang="eng">
 
@@ -131,6 +127,6 @@ module.exports = templateData => {
     </body>
     </html>
     `;
-    return html;
+  return html;
 };
 //generate team section
