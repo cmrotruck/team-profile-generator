@@ -165,7 +165,7 @@ async function LoadMenu(manager) {
               writeFile(page);
             })
             .then((writeFileResponse) => {
-              // console.log(writeFileResponse);
+              console.log(writeFileResponse);
               return;
             })
 
